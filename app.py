@@ -7,11 +7,15 @@ import numpy as np
 from datetime import datetime
 import json
 
-# Import własnych modułów
-from psychology_models import BigFiveAnalyzer, MotivationAnalyzer, CognitiveProfiler
-from analysis_engine import CareerAnalysisEngine
-from report_generator import ReportGenerator
-from visualizations import CareerDashboard
+# Import własnych modułów z error handling
+try:
+    from psychology_models import BigFiveAnalyzer, MotivationAnalyzer, CognitiveProfiler
+    from analysis_engine import CareerAnalysisEngine
+    from report_generator import ReportGenerator
+    from visualizations import CareerDashboard
+except ImportError as e:
+    st.error(f"Błąd importu modułów: {e}")
+    st.info("Upewnij się, że wszystkie pliki są w tym samym folderze co app.py")
 
 # Konfiguracja strony
 st.set_page_config(
