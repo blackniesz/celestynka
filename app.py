@@ -9,7 +9,7 @@ import json
 
 # Konfiguracja strony
 st.set_page_config(
-    page_title="CareerScope Pro",
+    page_title="Celestynka",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
