@@ -1,0 +1,56 @@
+# requirements.txt - Zależności dla Celestynki
+
+# Core Streamlit Application
+streamlit>=1.28.0
+streamlit-option-menu>=0.3.6
+
+# Data Processing & Analysis
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Visualization Libraries
+plotly>=5.17.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Machine Learning & Statistics
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+
+# PDF Generation (Optional - dla advanced PDF reports)
+reportlab>=4.0.0
+weasyprint>=59.0
+
+# Additional Utilities
+python-dateutil>=2.8.2
+pytz>=2023.3
+requests>=2.31.0
+
+# Development & Testing (Optional)
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Authentication & Security (dla production deployment)
+streamlit-authenticator>=0.2.3
+bcrypt>=4.0.0
+
+# Database Support (Optional - dla storing user data)
+sqlalchemy>=2.0.0
+sqlite3  # Built-in w Python
+
+# Caching & Performance
+redis>=4.6.0  # Optional dla advanced caching
+
+# Export & Integration
+openpyxl>=3.1.0  # Excel export
+python-pptx>=0.6.0  # PowerPoint export
+
+# API Integration (Optional)
+openai>=1.0.0  # Dla AI-enhanced insights
+anthropic>=0.3.0  # Alternative AI provider
+
+# Deployment Dependencies
+gunicorn>=21.0.0  # Production WSGI server
+psycopg2-binary>=2.9.0  # PostgreSQL dla production
