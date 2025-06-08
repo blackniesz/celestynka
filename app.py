@@ -184,116 +184,121 @@ def show_development_paths():
 
 def show_fast_track_path(results):
     """6-12 miesięczna ścieżka szybkiego rozwoju"""
-    st.markdown("## 🚀 Fast Track Path (6-12 miesięcy)")
+    st.markdown("## 🚀 Ścieżka Ekspresowa (6-12 miesięcy)")
     
     top_career = results['career_recommendations'][0]
     
-    st.info(f"**Target Role:** {top_career['title']} | **Match Score:** {top_career['match_score']:.0f}%")
+    st.info(f"**Rola Docelowa:** {top_career['title']} | **Wynik Dopasowania:** {top_career['match_score']:.0f}%")
     
-    # 90-day sprints
-    tab1, tab2, tab3, tab4 = st.tabs(["📅 Sprint 1 (0-90 dni)", "📅 Sprint 2 (90-180 dni)", "📅 Sprint 3 (180-270 dni)", "📅 Sprint 4 (270-365 dni)"])
+    # 90-dniowe sprinty
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "📅 Sprint 1 (0-90 dni)", 
+        "📅 Sprint 2 (90-180 dni)", 
+        "📅 Sprint 3 (180-270 dni)", 
+        "📅 Sprint 4 (270-365 dni)"
+    ])
     
     with tab1:
-        st.markdown("### 🎯 Sprint 1: Foundation & Quick Wins")
+        st.markdown("### 🎯 Sprint 1: Fundament i Szybkie Sukcesy")
         show_sprint_details({
-            'focus': 'Skills Assessment & Quick Skill Building',
+            'focus': 'Ocena Umiejętności i Szybki Rozwój Kompetencji',
             'goals': [
-                'Complete comprehensive skills gap analysis',
-                'Start 2 high-impact online courses',
-                'Build initial portfolio projects',
-                'Network mapping & outreach strategy'
+                'Przeprowadź kompleksową analizę luk w umiejętnościach',
+                'Rozpocznij 2 kursy online o wysokim wpływie',
+                'Zbuduj początkowe projekty portfolio',
+                'Strategia mapowania sieci kontaktów'
             ],
             'deliverables': [
-                '✅ Skills assessment report',
-                '✅ 2 certificates completed',
-                '✅ First portfolio project live',
-                '✅ 10 new professional connections'
+                '✅ Raport oceny umiejętności',
+                '✅ 2 ukończone certyfikaty',
+                '✅ Pierwszy projekt portfolio na żywo',
+                '✅ 10 nowych kontaktów zawodowych'
             ],
-            'tools': ['Coursera/Udemy', 'GitHub', 'LinkedIn', 'Personal website'],
-            'time_investment': '15-20 hours/week'
+            'tools': ['Coursera/Udemy', 'GitHub', 'LinkedIn', 'Strona osobista'],
+            'time_investment': '15-20 godzin/tydzień'
         })
     
     with tab2:
-        st.markdown("### 🎯 Sprint 2: Skill Deepening & Positioning")
+        st.markdown("### 🎯 Sprint 2: Pogłębianie Umiejętności i Pozycjonowanie")
         show_sprint_details({
-            'focus': 'Advanced Skills & Market Positioning',
+            'focus': 'Zaawansowane Umiejętności i Pozycjonowanie Rynkowe',
             'goals': [
-                'Master 1-2 core skills for target role',
-                'Start thought leadership activities',
-                'Build strategic relationships',
-                'Create substantial portfolio pieces'
+                'Opanuj 1-2 kluczowe umiejętności dla roli docelowej',
+                'Rozpocznij działania thought leadership',
+                'Zbuduj strategiczne relacje zawodowe',
+                'Stwórz znaczące elementy portfolio'
             ],
             'deliverables': [
-                '✅ Advanced certification earned',
-                '✅ 3 thought leadership pieces published',
-                '✅ Strategic mentoring relationship established',
-                '✅ Portfolio showcases expertise'
+                '✅ Zaawansowany certyfikat zdobyty',
+                '✅ 3 artykuły thought leadership opublikowane',
+                '✅ Strategiczna relacja mentorska nawiązana',
+                '✅ Portfolio pokazuje expertise'
             ],
-            'tools': ['Medium/LinkedIn Articles', 'Industry Forums', 'Conference Speaking'],
-            'time_investment': '20-25 hours/week'
+            'tools': ['Medium/Artykuły LinkedIn', 'Fora branżowe', 'Wystąpienia konferencyjne'],
+            'time_investment': '20-25 godzin/tydzień'
         })
     
     with tab3:
-        st.markdown("### 🎯 Sprint 3: Market Testing & Optimization")
+        st.markdown("### 🎯 Sprint 3: Testowanie Rynku i Optymalizacja")
         show_sprint_details({
-            'focus': 'Market Validation & Role Preparation',
+            'focus': 'Walidacja Rynkowa i Przygotowanie do Roli',
             'goals': [
-                'Test market readiness through applications',
-                'Refine positioning based on feedback',
-                'Intensive interview preparation',
-                'Optimize all materials (CV, LinkedIn, portfolio)'
+                'Przetestuj gotowość rynkową poprzez aplikacje',
+                'Dopracuj pozycjonowanie na podstawie feedbacku',
+                'Intensywne przygotowanie do rozmów kwalifikacyjnych',
+                'Optymalizuj wszystkie materiały (CV, LinkedIn, portfolio)'
             ],
             'deliverables': [
-                '✅ 10+ applications submitted',
-                '✅ Interview feedback incorporated',
-                '✅ All materials optimized',
-                '✅ Reference network established'
+                '✅ 10+ aplikacji wysłanych',
+                '✅ Feedback z rozmów wdrożony',
+                '✅ Wszystkie materiały zoptymalizowane',
+                '✅ Sieć referencji ustanowiona'
             ],
-            'tools': ['Job boards', 'Recruiters', 'Interview platforms', 'Feedback tools'],
-            'time_investment': '25-30 hours/week'
+            'tools': ['Portale z ofertami pracy', 'Rekruterzy', 'Platformy do rozmów'],
+            'time_investment': '25-30 godzin/tydzień'
         })
     
     with tab4:
-        st.markdown("### 🎯 Sprint 4: Execution & Transition")
+        st.markdown("### 🎯 Sprint 4: Realizacja i Przejście")
         show_sprint_details({
-            'focus': 'Final Push & Role Transition',
+            'focus': 'Finalne Natarcie i Przejście do Roli',
             'goals': [
-                'Intensive application and interview phase',
-                'Negotiate optimal offer',
-                'Prepare for role transition',
-                'Plan 100-day onboarding strategy'
+                'Intensywna faza aplikacji i rozmów kwalifikacyjnych',
+                'Negocjuj optymalną ofertę',
+                'Przygotuj się do przejścia ról',
+                'Zaplanuj strategię pierwszych 100 dni'
             ],
             'deliverables': [
-                '✅ Target role offer secured',
-                '✅ Transition plan created',
-                '✅ Onboarding strategy ready',
-                '✅ Continuous learning plan established'
+                '✅ Oferta roli docelowej zabezpieczona',
+                '✅ Plan przejścia stworzony',
+                '✅ Strategia onboardingu gotowa',
+                '✅ Plan ciągłego uczenia się ustanowiony'
             ],
-            'tools': ['Salary negotiation resources', 'Transition planning', 'Learning platforms'],
-            'time_investment': '30+ hours/week'
+            'tools': ['Zasoby negocjacji wynagrodzenia', 'Planowanie przejścia'],
+            'time_investment': '30+ godzin/tydzień'
         })
 
 def show_sprint_details(sprint_data):
-    """Helper function to display sprint details"""
+    """Helper function wyświetlająca szczegóły sprintu"""
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.markdown(f"**🎯 Focus:** {sprint_data['focus']}")
+        st.markdown(f"**🎯 Fokus:** {sprint_data['focus']}")
         
-        st.markdown("**📋 Key Goals:**")
+        st.markdown("**📋 Kluczowe Cele:**")
         for goal in sprint_data['goals']:
             st.markdown(f"• {goal}")
         
-        st.markdown("**🎯 Deliverables:**")
+        st.markdown("**🎯 Rezultaty:**")
         for deliverable in sprint_data['deliverables']:
             st.markdown(f"{deliverable}")
     
     with col2:
-        st.markdown("**🛠️ Tools & Resources:**")
+        st.markdown("**🛠️ Narzędzia i Zasoby:**")
         for tool in sprint_data['tools']:
             st.markdown(f"• {tool}")
         
-        st.markdown(f"**⏰ Time Investment:**")
+        st.markdown(f"**⏰ Inwestycja Czasowa:**")
         st.markdown(f"{sprint_data['time_investment']}")
 
 # Helper functions for strategic analysis
