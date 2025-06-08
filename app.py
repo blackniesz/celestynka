@@ -968,7 +968,7 @@ def analyze_strategic_fit(career_title, analysis_results):
         'fit_reasons': 'Strategic analysis dostępna po pogłębieniu profilu zawodowego.',
         'unique_advantage': 'Twój unique background tworzy interesting opportunities w tej dziedzinie.',
         'development_path': 'Standardowa ścieżka rozwoju z focus na AI integration i future trends.'
-    })# app.py - CareerScope Pro - Kompletna standalone aplikacja
+    })# app.py - Celestynka - Kompletna standalone aplikacja
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -979,7 +979,7 @@ import json
 
 # Konfiguracja strony
 st.set_page_config(
-    page_title="CareerScope Pro",
+    page_title="Celestynka",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -1187,7 +1187,7 @@ def main():
     # Header
     st.markdown("""
     <div class="main-header">
-        <h1>🧠 CareerScope Pro</h1>
+        <h1>🧠 Celestynka</h1>
         <p>Zaawansowana analiza psychologiczno-biznesowa kariery</p>
     </div>
     """, unsafe_allow_html=True)
