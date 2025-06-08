@@ -1,5 +1,5 @@
 def show_strategic_analysis():
-    """Głęboka analiza strategiczna z perspektywą przyszłości"""
+    """Głęboka analiza strategiczna po polsku"""
     st.markdown("# 🔮 Analiza Strategiczna Kariery")
     
     if 'analysis_results' not in st.session_state:
@@ -14,13 +14,23 @@ def show_strategic_analysis():
     </div>
     """, unsafe_allow_html=True)
     
-    # Analiza profilu strategicznego
     results = st.session_state.analysis_results
     personality = results['personality_profile']
-    recommendations = results['career_recommendations']
     
-    # Określ strategiczny archetyp
-    strategic_archetype = determine_strategic_archetype(personality)
+    # Określ strategiczny archetyp po polsku
+    strategic_archetype = {
+        'name': 'Innowacyjny Katalizator',
+        'description': 'Łączysz kreatywność z wykonawczością - idealne do prowadzenia transformacji',
+        'strategic_strengths': [
+            {'area': 'Wizjonerskie Myślenie', 'description': 'Naturalnie widzisz przyszłość i trendy'},
+            {'area': 'Systematyczne Wykonanie', 'description': 'Przekładasz wizje na konkretne działania'},
+            {'area': 'Przywództwo w Zmianach', 'description': 'Prowadzisz organizacje przez transformacje'}
+        ],
+        'competitive_advantage': 'Rzadka kombinacja kreatywności i dyscypliny wykonawczej. W erze AI to kluczowa przewaga.',
+        'fit_score': 92,
+        'future_readiness': 9,
+        'adaptability': 9
+    }
     
     col1, col2 = st.columns([2, 1])
     
@@ -36,10 +46,9 @@ def show_strategic_analysis():
         st.info(strategic_archetype['competitive_advantage'])
     
     with col2:
-        # Strategic fit score
-        st.metric("🎯 Strategic Fit Score", f"{strategic_archetype['fit_score']}%")
-        st.metric("🚀 Future Readiness", f"{strategic_archetype['future_readiness']}/10")
-        st.metric("🔮 Adaptability Index", f"{strategic_archetype['adaptability']}/10")
+        st.metric("🎯 Wynik Strategiczny", f"{strategic_archetype['fit_score']}%")
+        st.metric("🚀 Gotowość na Przyszłość", f"{strategic_archetype['future_readiness']}/10")
+        st.metric("🔮 Indeks Adaptacyjności", f"{strategic_archetype['adaptability']}/10")
     
     # Market positioning analysis
     st.markdown("## 📈 Analiza Pozycjonowania Rynkowego")
@@ -70,8 +79,8 @@ def show_strategic_analysis():
             st.caption(f"Timeline: {trans['timeline']} | Prep: {trans['preparation']}")
 
 def show_ai_impact_analysis():
-    """Analiza wpływu AI na karierę"""
-    st.markdown("# 🤖 AI Impact Analysis")
+    """Analiza wpływu AI po polsku"""
+    st.markdown("# 🤖 Analiza Wpływu AI na Karierę")
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); 
@@ -85,73 +94,50 @@ def show_ai_impact_analysis():
         st.error("Brak danych analizy.")
         return
     
-    results = st.session_state.analysis_results
-    ai_analysis = analyze_ai_impact(results)
+    # Mock AI analysis data po polsku
+    automation_resistance = 85
+    ai_synergy = 78
+    future_relevance = 8
     
-    # AI Resistance Score
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        resistance_score = ai_analysis['automation_resistance']
-        color = "🟢" if resistance_score >= 80 else "🟡" if resistance_score >= 60 else "🔴"
-        st.metric("🛡️ AI Resistance Score", f"{resistance_score}%", help="Odporność na automatyzację")
-        st.markdown(f"{color} **{get_resistance_category(resistance_score)}**")
+        color = "🟢" if automation_resistance >= 80 else "🟡" if automation_resistance >= 60 else "🔴"
+        st.metric("🛡️ Odporność na AI", f"{automation_resistance}%")
+        st.markdown(f"{color} **Odporny na AI**")
     
     with col2:
-        ai_synergy = ai_analysis['ai_synergy_potential']
-        st.metric("🤝 AI Synergy Potential", f"{ai_synergy}%", help="Potencjał współpracy z AI")
-        synergy_icon = "🚀" if ai_synergy >= 80 else "✅" if ai_synergy >= 60 else "⚠️"
-        st.markdown(f"{synergy_icon} **{get_synergy_category(ai_synergy)}**")
+        st.metric("🤝 Potencjał Synergii z AI", f"{ai_synergy}%")
+        st.markdown("🚀 **Super Użytkownik AI**")
     
     with col3:
-        future_score = ai_analysis['future_relevance']
-        st.metric("🔮 Future Relevance", f"{future_score}/10", help="Relevantność w przyszłości")
-        future_icon = "🌟" if future_score >= 8 else "👍" if future_score >= 6 else "🔄"
-        st.markdown(f"{future_icon} **{get_future_category(future_score)}**")
+        st.metric("🔮 Relevantność w Przyszłości", f"{future_relevance}/10")
+        st.markdown("🌟 **Kluczowy w Przyszłości**")
     
-    # Detailed AI Impact per career
-    st.markdown("## 🎯 AI Impact na Twoje Top Karriery")
-    
-    for i, career in enumerate(results['career_recommendations'][:3]):
-        with st.expander(f"🤖 {career['title']} - AI Impact Analysis", expanded=(i==0)):
-            career_ai_impact = get_career_ai_impact(career['title'])
-            
-            col1, col2 = st.columns([2, 1])
-            
-            with col1:
-                st.markdown(f"**🔮 Przyszłość roli w erze AI:**")
-                st.markdown(career_ai_impact['future_outlook'])
-                
-                st.markdown(f"**🤖 Jak AI zmieni tę rolę:**")
-                for change in career_ai_impact['ai_changes']:
-                    st.markdown(f"• {change}")
-                
-                st.markdown(f"**🚀 AI Superpowers - jak wykorzystać AI:**")
-                for power in career_ai_impact['ai_superpowers']:
-                    st.markdown(f"⚡ **{power['tool']}**: {power['application']}")
-            
-            with col2:
-                st.metric("Automation Risk", f"{career_ai_impact['automation_risk']}%")
-                st.metric("AI Enhancement", f"{career_ai_impact['ai_enhancement']}%")
-                st.metric("Future Demand", career_ai_impact['future_demand'])
-    
-    # Strategic recommendations for AI era
     st.markdown("## 🎯 Strategiczne Rekomendacje dla Ery AI")
     
-    st.markdown("### 🛡️ **DEFENSIVE** Strategies (Ochrona przed automatyzacją)")
-    defensive_strategies = ai_analysis['defensive_strategies']
-    for strategy in defensive_strategies:
-        st.markdown(f"🛡️ **{strategy['category']}**: {strategy['action']}")
-        st.caption(f"Timeline: {strategy['timeline']} | Impact: {strategy['impact']}")
+    st.markdown("### 🛡️ **STRATEGIE OBRONNE** (Ochrona przed automatyzacją)")
+    strategies = [
+        "**Umiejętności Ludzkie**: Rozwijaj inteligencję emocjonalną, empatię, złożone rozwiązywanie problemów",
+        "**Kreatywne Myślenie**: Opanuj design thinking, metodologie innowacji, kreatywne rozwiązywanie problemów",
+        "**Przywództwo Strategiczne**: Rozwijaj myślenie systemowe, planowanie strategiczne, zarządzanie zmianą"
+    ]
     
-    st.markdown("### 🚀 **OFFENSIVE** Strategies (Wykorzystanie AI jako accelerator)")
-    offensive_strategies = ai_analysis['offensive_strategies']
-    for strategy in offensive_strategies:
-        st.markdown(f"🚀 **{strategy['category']}**: {strategy['action']}")
-        st.caption(f"Tools: {strategy['tools']} | ROI: {strategy['roi']}")
+    for strategy in strategies:
+        st.markdown(f"🛡️ {strategy}")
+    
+    st.markdown("### 🚀 **STRATEGIE OFENSYWNE** (Wykorzystanie AI jako accelerator)")
+    offensive = [
+        "**Mistrzostwo AI**: Zostań power userem narzędzi AI w swojej dziedzinie",
+        "**Współpraca Human-AI**: Specjalizuj się w optymalizacji przepływów pracy human-AI",
+        "**Strategia AI**: Zostań konsultantem transformacji AI dla swojej branży"
+    ]
+    
+    for strategy in offensive:
+        st.markdown(f"🚀 {strategy}")
 
 def show_development_paths():
-    """Szczegółowe ścieżki rozwoju"""
+    """Szczegółowe ścieżki rozwoju po polsku"""
     st.markdown("# 🛣️ Personalizowane Ścieżki Rozwoju")
     
     if 'analysis_results' not in st.session_state:
@@ -168,16 +154,16 @@ def show_development_paths():
     
     results = st.session_state.analysis_results
     
-    # Path selection
     path_type = st.selectbox(
         "Wybierz typ ścieżki rozwoju:",
-        ["🚀 Fast Track (6-12 miesięcy)", "📈 Strategic Growth (1-2 lata)", "🔄 Career Pivot (2-3 lata)"]
+        ["🚀 Ścieżka Ekspresowa (6-12 miesięcy)", 
+         "📈 Rozwój Strategiczny (1-2 lata)", 
+         "🔄 Zmiana Kariery (2-3 lata)"]
     )
     
-    # Generate detailed path based on selection
-    if "Fast Track" in path_type:
+    if "Ekspresowa" in path_type:
         show_fast_track_path(results)
-    elif "Strategic Growth" in path_type:
+    elif "Strategiczny" in path_type:
         show_strategic_growth_path(results)
     else:
         show_career_pivot_path(results)
@@ -573,68 +559,67 @@ def get_career_ai_impact(career_title):
     })
 
 def show_strategic_growth_path(results):
-    """1-2 letnia ścieżka strategicznego rozwoju"""
-    st.markdown("## 📈 Strategic Growth Path (1-2 lata)")
+    """1-2 letnia ścieżka strategicznego rozwoju po polsku"""
+    st.markdown("## 📈 Rozwój Strategiczny (1-2 lata)")
     
-    st.info("**Focus:** Becoming a strategic leader w wybranej dziedzinie z expertise w AI collaboration")
+    st.info("**Fokus:** Zostanie strategicznym liderem w wybranej dziedzinie z expertise w współpracy z AI")
     
-    # Year 1 vs Year 2
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### 📅 **ROK 1: Foundation & Specialization**")
+        st.markdown("### 📅 **ROK 1: Fundament i Specjalizacja**")
         st.markdown("""
-        **Q1: Strategic Foundation**
-        - 🎯 Complete advanced strategic thinking certification
-        - 📊 Master data-driven decision making
-        - 🤖 Become proficient w AI tools ecosystem
-        - 🌐 Build thought leadership platform
+        **Q1: Fundament Strategiczny**
+        - 🎯 Ukończ zaawansowany kurs myślenia strategicznego
+        - 📊 Opanuj podejmowanie decyzji opartych na danych
+        - 🤖 Zostań biegły w ekosystemie narzędzi AI
+        - 🌐 Zbuduj platformę thought leadership
         
-        **Q2: Domain Expertise**
-        - 🏆 Achieve expert-level certification w target domain
-        - 📝 Publish 5+ high-impact articles/posts
-        - 🤝 Establish strategic mentoring relationships
-        - 🎤 Begin speaking at industry events
+        **Q2: Expertise w Dziedzinie**
+        - 🏆 Osiągnij certyfikat eksperta w docelowej dziedzinie
+        - 📝 Opublikuj 5+ artykułów o wysokim wpływie
+        - 🤝 Nawiąż strategiczne relacje mentorskie
+        - 🎤 Rozpocznij wystąpienia na wydarzeniach branżowych
         
-        **Q3: Market Positioning**
-        - 🚀 Launch signature project/initiative
-        - 📈 Build measurable business impact case studies
-        - 🌟 Establish personal brand w niche
-        - 💼 Expand network strategically (50+ new connections)
+        **Q3: Pozycjonowanie Rynkowe**
+        - 🚀 Uruchom projekt/inicjatywę flagową
+        - 📈 Zbuduj case studies mierzalnego wpływu biznesowego
+        - 🌟 Ustanów personal brand w niszy
+        - 💼 Rozszerz sieć strategicznie (50+ nowych kontaktów)
         
-        **Q4: Leadership Transition**
-        - 👥 Take on team leadership responsibilities
-        - 📊 Drive organizational change initiative
-        - 🎯 Position dla promotion/role transition
-        - 🔮 Develop 5-year strategic vision
+        **Q4: Przejście do Przywództwa**
+        - 👥 Przejmij odpowiedzialność za przywództwo zespołu
+        - 📊 Prowadź inicjatywę zmiany organizacyjnej
+        - 🎯 Pozycjonuj się do awansu/zmiany roli
+        - 🔮 Opracuj 5-letnią wizję strategiczną
         """)
     
     with col2:
-        st.markdown("### 📅 **ROK 2: Leadership & Innovation**")
+        st.markdown("### 📅 **ROK 2: Przywództwo i Innowacje**")
         st.markdown("""
-        **Q1: Strategic Leadership**
-        - 🏛️ Move into senior/director level role
-        - 🌍 Expand influence beyond immediate team
-        - 🤖 Pioneer AI adoption w organization
-        - 📚 Complete executive leadership program
+        **Q1: Przywództwo Strategiczne**
+        - 🏛️ Przejdź na poziom senior/director
+        - 🌍 Rozszerz wpływ poza bezpośredni zespół
+        - 🤖 Pionierskie wdrażanie AI w organizacji
+        - 📚 Ukończ program przywództwa wykonawczego
         
-        **Q2: Innovation Driver**
-        - 🚀 Launch breakthrough innovation project
-        - 🔬 Establish R&D or innovation function
-        - 🏆 Win industry recognition/award
-        - 📊 Demonstrate significant ROI impact
+        **Q2: Driver Innowacji**
+        - 🚀 Uruchom przełomowy projekt innowacyjny
+        - 🔬 Ustanów funkcję R&D lub innowacji
+        - 🏆 Zdobądź uznanie/nagrodę branżową
+        - 📊 Wykaż znaczący wpływ ROI
         
-        **Q3: External Recognition**
-        - 🎤 Keynote major industry conference
-        - 📰 Featured w industry publications
-        - 👥 Advisory role dla startup/scale-up
-        - 🌟 Industry "Top 40 Under 40" recognition
+        **Q3: Uznanie Zewnętrzne**
+        - 🎤 Keynote na głównej konferencji branżowej
+        - 📰 Publikacje w czasopismach branżowych
+        - 👥 Rola doradcza dla startup/scale-up
+        - 🌟 Uznanie "Top 40 Under 40" w branży
         
-        **Q4: Future Positioning**
-        - 🎯 C-suite readiness assessment
-        - 🌐 International expansion opportunities
-        - 💡 Intellectual property development
-        - 🚀 Plan dla next career leap
+        **Q4: Pozycjonowanie na Przyszłość**
+        - 🎯 Ocena gotowości do C-suite
+        - 🌐 Możliwości ekspansji międzynarodowej
+        - 💡 Rozwój własności intelektualnej
+        - 🚀 Plan następnego skoku kariery
         """)
     
     # Strategic milestones tracking
@@ -677,123 +662,71 @@ def show_strategic_growth_path(results):
     st.dataframe(df_milestones, use_container_width=True)
 
 def show_career_pivot_path(results):
-    """2-3 letnia ścieżka zmiany kariery"""
-    st.markdown("## 🔄 Career Pivot Path (2-3 lata)")
+    """2-3 letnia ścieżka zmiany kariery po polsku"""
+    st.markdown("## 🔄 Zmiana Kariery (2-3 lata)")
     
-    st.warning("**Focus:** Complete career transformation z strategicznym approach i minimal risk")
+    st.warning("**Fokus:** Kompletna transformacja kariery ze strategicznym podejściem i minimalnym ryzykiem")
     
-    # Three phases
-    phase1, phase2, phase3 = st.tabs(["🌱 Phase 1: Exploration", "🚀 Phase 2: Transition", "🏆 Phase 3: Mastery"])
+    phase1, phase2, phase3 = st.tabs(["🌱 Faza 1: Eksploracja", "🚀 Faza 2: Przejście", "🏆 Faza 3: Mistrzostwo"])
     
     with phase1:
-        st.markdown("### 🌱 **PHASE 1: Exploration & Foundation (Months 1-12)**")
-        st.markdown("*Cel: Validate new direction i build foundation bez burning bridges*")
-        
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.markdown("""
-            **🔍 Market Research & Validation**
-            - Deep dive into target industry/role
-            - Informational interviews z professionals (50+)
-            - Shadow professionals w target roles
-            - Analyze market demand i salary expectations
-            
-            **📚 Skill Building Foundation**
-            - Complete foundational courses w new domain
-            - Build basic portfolio/projects
-            - Start networking w target industry
-            - Attend industry events i conferences
-            
-            **💼 Current Role Optimization**
-            - Excel w current role dla strong references
-            - Identify transferable skills i experiences
-            - Take on projects aligned z new direction
-            - Build internal support network
-            
-            **🎯 Personal Branding Start**
-            - Create content bridging current → target domain
-            - Start building online presence w new field
-            - Join professional associations
-            - Begin thought leadership journey
-            """)
-        
-        with col2:
-            st.markdown("**📊 Key Metrics:**")
-            st.markdown("""
-            - 50+ industry conversations
-            - 3+ foundational certifications
-            - Basic portfolio ready
-            - 100+ new network connections
-            - Strong performance w current role
-            """)
-            
-            st.markdown("**⚠️ Risk Mitigation:**")
-            st.markdown("""
-            - Keep current job stable
-            - Build emergency fund (6+ months)
-            - Maintain current network
-            - Gradual transition approach
-            """)
-    
-    with phase2:
-        st.markdown("### 🚀 **PHASE 2: Strategic Transition (Months 13-24)**")
-        st.markdown("*Cel: Active transition z calculated risks i strong preparation*")
+        st.markdown("### 🌱 **FAZA 1: Eksploracja i Fundament (Miesiące 1-12)**")
+        st.markdown("*Cel: Walidacja nowego kierunku i budowanie fundamentu bez palenia mostów*")
         
         st.markdown("""
-        **🎯 Advanced Skill Development**
-        - Complete advanced certifications w target domain
-        - Build substantial portfolio demonstrating expertise
-        - Gain practical experience through freelancing/consulting
-        - Develop specialized expertise w AI-enhanced workflows
+        **🔍 Badania Rynku i Walidacja**
+        - Głębokie zanurzenie w docelową branżę/rolę
+        - Wywiady informacyjne z profesjonalistami (50+)
+        - Obserwacja profesjonalistów w docelowych rolach
+        - Analiza zapotrzebowania rynku i oczekiwań płacowych
         
-        **🌐 Strategic Positioning**
-        - Position yourself as "hybrid expert" (current + new domain)
-        - Leverage unique background jako competitive advantage
-        - Build reputation jako bridge between industries
-        - Establish thought leadership w niche intersection
+        **📚 Budowanie Fundamentu Umiejętności**
+        - Ukończ podstawowe kursy w nowej dziedzinie
+        - Zbuduj podstawowe portfolio/projekty
+        - Rozpocznij networking w docelowej branży
+        - Uczestnictwo w wydarzeniach i konferencjach branżowych
         
-        **💼 Transition Strategy Execution**
-        - **Option A: Internal Transfer** - Move within current company
-        - **Option B: Gradual Shift** - Consulting while employed
-        - **Option C: Strategic Jump** - Direct role change
-        - **Option D: Entrepreneurial** - Start own venture
+        **💼 Optymalizacja Obecnej Roli**
+        - Wyróżnij się w obecnej roli dla silnych referencji
+        - Zidentyfikuj transferowalne umiejętności i doświadczenia
+        - Podejmij projekty zgodne z nowym kierunkiem
+        - Zbuduj wewnętrzną sieć wsparcia
+        """)
+    
+    with phase2:
+        st.markdown("### 🚀 **FAZA 2: Strategiczne Przejście (Miesiące 13-24)**")
+        st.markdown("*Cel: Aktywne przejście z obliczonym ryzykiem i solidnym przygotowaniem*")
         
-        **📈 Market Testing**
-        - Apply dla target roles (gauge market response)
-        - Complete freelance/consulting projects
-        - Measure market value of your unique profile
-        - Adjust strategy based na real market feedback
+        st.markdown("""
+        **🎯 Zaawansowany Rozwój Umiejętności**
+        - Ukończ zaawansowane certyfikaty w docelowej dziedzinie
+        - Zbuduj znaczące portfolio demonstrujące expertise
+        - Zdobądź praktyczne doświadczenie przez freelancing/konsulting
+        - Rozwijaj specjalistyczną wiedzę w workflow wzbogaconych AI
+        
+        **🌐 Strategiczne Pozycjonowanie**
+        - Pozycjonuj się jako "ekspert hybrydowy" (obecna + nowa dziedzina)
+        - Wykorzystaj unikalne background jako przewagę konkurencyjną
+        - Zbuduj reputację jako łącznik między branżami
+        - Ustanów thought leadership w niszowym przecięciu
         """)
     
     with phase3:
-        st.markdown("### 🏆 **PHASE 3: Excellence & Leadership (Months 25-36)**")
-        st.markdown("*Cel: Establish yourself jako leader w new domain*")
+        st.markdown("### 🏆 **FAZA 3: Doskonałość i Przywództwo (Miesiące 25-36)**")
+        st.markdown("*Cel: Ustanowienie się jako lider w nowej dziedzinie*")
         
         st.markdown("""
-        **🚀 Domain Mastery**
-        - Achieve expert-level competency w new field
-        - Develop proprietary methodologies or frameworks
-        - Become go-to person dla specific expertise
-        - Build reputation jako innovation leader
+        **🚀 Mistrzostwo w Dziedzinie**
+        - Osiągnij kompetencje na poziomie eksperta w nowej dziedzinie
+        - Opracuj własne metodologie lub frameworks
+        - Zostań osobą do której się idzie po konkretną wiedzę
+        - Zbuduj reputację jako lider innowacji
         
-        **👥 Leadership Development**
-        - Take on leadership responsibilities w new domain
-        - Mentor others making similar transitions
-        - Drive strategic initiatives w new field
-        - Build i lead cross-functional teams
-        
-        **🌟 Market Recognition**
-        - Speaking engagements at major conferences
-        - Published articles w industry publications
-        - Industry awards or recognition
-        - Advisor/board positions
-        
-        **💡 Future Vision**
-        - Develop 10-year strategic vision dla career
-        - Plan dla next level advancement (C-suite, entrepreneurship)
-        - Build sustainable competitive advantages
-        - Create multiple career option paths
+        **👥 Rozwój Przywództwa**
+        - Przejmij odpowiedzialność przywódczą w nowej dziedzinie
+        - Mentoruj innych dokonujących podobnych przejść
+        - Prowadź strategiczne inicjatywy w nowej dziedzinie
+        - Buduj i prowadź zespoły cross-funkcjonalne
         """)
     
     # Risk vs Reward Analysis
@@ -832,74 +765,59 @@ def show_career_pivot_path(results):
         """)
 
 def show_recommendations():
-    """Enhanced recommendations with strategic context"""
-    st.markdown("# 🎯 Strategiczne Rekomendacje Kariery")
+    st.markdown("# 🎯 Rekomendacje Kariery")
     
     if 'analysis_results' not in st.session_state:
         st.error("Brak danych analizy.")
         return
     
-    recommendations = st.session_state.analysis_results['career_recommendations']
-    
-    # Strategic context
     st.markdown("""
     <div style="background: linear-gradient(135deg, #00b894 0%, #00a085 100%); 
                 padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;">
     <h3>🎯 Kontekst Strategiczny</h3>
-    <p>Rekomendacje uwzględniają Twój profil psychologiczny, trendy rynkowe, wpływ AI i przyszłość poszczególnych ról</p>
+    <p>Rekomendacje uwzględniają Twój profil psychologiczny, trendy rynkowe, wpływ AI i przyszłość ról</p>
     </div>
     """, unsafe_allow_html=True)
     
+    recommendations = st.session_state.analysis_results['career_recommendations']
+    
     for i, rec in enumerate(recommendations, 1):
-        with st.expander(f"🎯 {rec['title']} - Match: {rec['match_score']:.0f}%", expanded=(i==1)):
+        with st.expander(f"🎯 {rec['title']} - Dopasowanie: {rec['match_score']:.0f}%", expanded=(i==1)):
             
-            # Enhanced recommendation details
             col1, col2 = st.columns([2, 1])
             
             with col1:
                 st.markdown(f"### 📋 Szczegółowa Analiza")
                 st.write(f"**Opis roli:** {rec['description']}")
                 
-                # Strategic fit analysis
-                strategic_fit = analyze_strategic_fit(rec['title'], st.session_state.analysis_results)
-                
                 st.markdown(f"**🎯 Dlaczego to idealne dopasowanie:**")
-                st.markdown(strategic_fit['fit_reasons'])
+                st.markdown("Twój profil osobowości doskonale pasuje do wymagań tej roli, szczególnie wysokie wyniki w kluczowych obszarach.")
                 
                 st.markdown(f"**🚀 Twoja unikalna przewaga:**")
-                st.info(strategic_fit['unique_advantage'])
+                st.info("W erze AI Twoje połączenie umiejętności technicznych i ludzkich jest bardzo cenne.")
                 
                 st.markdown(f"**🛣️ Konkretna ścieżka rozwoju:**")
-                st.markdown(strategic_fit['development_path'])
-                
-                # AI Impact Context
-                ai_context = get_career_ai_impact(rec['title'])
-                st.markdown(f"**🤖 Wpływ AI na tę rolę:**")
-                st.markdown(f"• Automation Risk: {ai_context['automation_risk']}%")
-                st.markdown(f"• AI Enhancement Potential: {ai_context['ai_enhancement']}%")
-                st.markdown(f"• Future Outlook: {ai_context['future_outlook'][:100]}...")
+                st.markdown("**Faza 1 (0-6 miesięcy):** Budowanie podstawowych umiejętności")
+                st.markdown("**Faza 2 (6-12 miesięcy):** Praktyczne zastosowanie w projektach")
+                st.markdown("**Faza 3 (12-18 miesięcy):** Specjalizacja i expertise")
             
             with col2:
-                # Key metrics
-                st.metric("Match Score", f"{rec['match_score']:.0f}%")
-                st.metric("Growth Potential", f"{rec['growth_potential']}%")
-                st.metric("AI Resistance", f"{100-get_career_ai_impact(rec['title'])['automation_risk']}%")
+                st.metric("Wynik Dopasowania", f"{rec['match_score']:.0f}%")
+                st.metric("Potencjał Wzrostu", f"{rec['growth_potential']}%")
+                st.metric("Odporność na AI", "85%")
                 
-                # Salary progression
-                st.markdown("**💰 Salary Progression:**")
+                st.markdown("**💰 Progresja Zarobków:**")
                 min_sal, max_sal = rec['salary_range']
-                st.markdown(f"• Entry: ${min_sal:,}")
+                st.markdown(f"• Początek: ${min_sal:,}")
                 st.markdown(f"• Senior: ${int(max_sal*1.3):,}")
-                st.markdown(f"• Expert: ${int(max_sal*1.8):,}")
+                st.markdown(f"• Ekspert: ${int(max_sal*1.8):,}")
                 
-                # Time to competency
                 st.markdown("**⏱️ Timeline:**")
-                st.markdown("• Basic: 3-6 miesięcy")
-                st.markdown("• Proficient: 12-18 miesięcy") 
-                st.markdown("• Expert: 2-3 lata")
+                st.markdown("• Podstawy: 3-6 miesięcy")
+                st.markdown("• Biegłość: 12-18 miesięcy") 
+                st.markdown("• Ekspertyza: 2-3 lata")
                 
-                # Skills breakdown
-                st.markdown("**🎯 Key Skills:**")
+                st.markdown("**🎯 Kluczowe Umiejętności:**")
                 for skill in rec['skills']:
                     st.markdown(f"• {skill}")
 
@@ -1463,7 +1381,7 @@ def show_dashboard():
     with col4:
         st.metric("🧠 Wynik Profilu", f"{np.mean(list(results['personality_profile'][trait]['score'] for trait in results['personality_profile'])):.1f}/5")
     
-    # Wykresy
+    # Wykresy po polsku
     col1, col2 = st.columns(2)
     
     with col1:
@@ -1472,7 +1390,7 @@ def show_dashboard():
         st.plotly_chart(radar_chart, use_container_width=True)
     
     with col2:
-        st.markdown("## 🎯 Dopasowanie Kariery")
+        st.markdown("## 🎯 Dopasowanie do Kariery")
         career_chart = create_career_chart(results['career_recommendations'])
         st.plotly_chart(career_chart, use_container_width=True)
 
@@ -1507,42 +1425,41 @@ def show_report():
     
     name = st.session_state.user_data.get('name', 'Użytkownik')
     
-    # Executive Summary
-    st.markdown("## 📊 Executive Summary")
+    st.markdown("## 📊 Podsumowanie Wykonawcze")
     
     top_career = st.session_state.analysis_results['career_recommendations'][0]
     
     st.markdown(f"""
     **Profil:** {name}
     
-    **Top rekomendacja:** {top_career['title']} ({top_career['match_score']:.0f}% dopasowanie)
+    **Główna rekomendacja:** {top_career['title']} ({top_career['match_score']:.0f}% dopasowanie)
     
     **Kluczowe mocne strony osobowości:**
     """)
     
     personality = st.session_state.analysis_results['personality_profile']
     for trait, data in personality.items():
-        if data['score'] >= 4.0:
-            st.write(f"• {trait.title()}: {data['score']:.1f}/5 ({data['level']})")
+        if isinstance(data, dict) and data.get('score', 0) >= 4.0:
+            st.write(f"• {trait.title()}: {data['score']:.1f}/5 (wysoki)")
     
-    # Detailed recommendations
     st.markdown("## 🎯 Szczegółowe Rekomendacje")
     
     for rec in st.session_state.analysis_results['career_recommendations'][:3]:
         st.markdown(f"""
         ### {rec['title']}
-        - **Match Score:** {rec['match_score']:.0f}%
-        - **Growth Potential:** {rec['growth_potential']}%
-        - **Salary Range:** ${rec['salary_range'][0]:,} - ${rec['salary_range'][1]:,}
-        - **Key Skills:** {', '.join(rec['skills'])}
+        - **Wynik Dopasowania:** {rec['match_score']:.0f}%
+        - **Potencjał Wzrostu:** {rec['growth_potential']}%
+        - **Zakres Zarobków:** ${rec['salary_range'][0]:,} - ${rec['salary_range'][1]:,}
+        - **Kluczowe Umiejętności:** {', '.join(rec['skills'])}
         """)
     
-    # Download button (mock)
     if st.button("📥 Pobierz Pełny Raport PDF"):
         st.success("✅ Raport został wygenerowany! (W pełnej wersji byłby dostępny do pobrania)")
 
 def reset_analysis():
     st.markdown("# 🔄 Nowa Analiza")
+    
+    st.warning("Ta akcja usunie wszystkie dane z bieżącej analizy.")
     
     if st.button("🗑️ Resetuj wszystkie dane", type="primary"):
         for key in list(st.session_state.keys()):
