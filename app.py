@@ -1,4 +1,4 @@
-# app.py - CareerScope Pro - Kompletna standalone aplikacja
+# app.py - Celestynka - Kompletna standalone aplikacja
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -217,7 +217,7 @@ def main():
     # Header
     st.markdown("""
     <div class="main-header">
-        <h1>🧠 CareerScope Pro</h1>
+        <h1>🧠 Celestynka</h1>
         <p>Zaawansowana analiza psychologiczno-biznesowa kariery</p>
     </div>
     """, unsafe_allow_html=True)
