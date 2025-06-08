@@ -1444,7 +1444,7 @@ def generate_analysis():
         }
 
 def show_dashboard():
-    st.markdown("# 📊 Dashboard Analizy Kariery")
+    st.markdown("# 📊 Panel Główny Analizy Kariery")
     
     if 'analysis_results' not in st.session_state:
         st.error("Brak danych analizy. Proszę najpierw wypełnić formularz.")
@@ -1452,16 +1452,16 @@ def show_dashboard():
     
     results = st.session_state.analysis_results
     
-    # Metryki
+    # Metryki po polsku
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("🎯 Top Match", f"{results['career_recommendations'][0]['match_score']:.0f}%")
+        st.metric("🎯 Najlepsze Dopasowanie", f"{results['career_recommendations'][0]['match_score']:.0f}%")
     with col2:
-        st.metric("💰 Avg Salary", f"${np.mean([r['salary_range'] for r in results['career_recommendations'][:3]], axis=0)[0]/1000:.0f}k")
+        st.metric("💰 Średnie Zarobki", f"${np.mean([r['salary_range'] for r in results['career_recommendations'][:3]], axis=0)[0]/1000:.0f}k")
     with col3:
-        st.metric("📈 Growth Potential", f"{np.mean([r['growth_potential'] for r in results['career_recommendations'][:3]]):.0f}%")
+        st.metric("📈 Potencjał Wzrostu", f"{np.mean([r['growth_potential'] for r in results['career_recommendations'][:3]]):.0f}%")
     with col4:
-        st.metric("🧠 Profile Score", f"{np.mean(list(results['personality_profile'][trait]['score'] for trait in results['personality_profile'])):.1f}/5")
+        st.metric("🧠 Wynik Profilu", f"{np.mean(list(results['personality_profile'][trait]['score'] for trait in results['personality_profile'])):.1f}/5")
     
     # Wykresy
     col1, col2 = st.columns(2)
